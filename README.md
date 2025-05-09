@@ -12,7 +12,7 @@ Este projeto é uma réplica do sistema de gerenciamento do jogo pokémon, utili
 1. **Clonar o repositório:**
 
 ```bash
-   git clone https://github.com/MZMS1510/project-pokemon-database.git
+   git clone https://github.com/MZMS1510/pokemon-database-project.git
    cd project-pokemon-database
 ```
 

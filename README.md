@@ -55,6 +55,7 @@ Isso criará todas as tabelas do projeto no seu banco de dados PostgreSQL com UU
 
 ## Estrutura de Diretórios
 
+- **`assets/`**: Arquivos de imagem utilizados principalmente na documentação.
 - **`config/`**: Configurações do banco de dados e outras configurações do projeto.
 - **`controllers/`**: Controladores da aplicação (lógica de negócio).
 - **`models/`**: Modelos da aplicação (definições de dados e interações com o banco de dados).

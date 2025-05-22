@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
-import PokemonSpecies from "./pokemonSpeciesModel.js";
 
 const Pokemon = sequelize.define(
   "pokemon",

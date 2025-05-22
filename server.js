@@ -1,6 +1,6 @@
 import express from "express";
 import { testConnection } from "./config/database.js";
-import indexRouter from "./routes/index.js";
+import indexRouter from "./routes/indexRouter.js";
 
 export const app = express();
 

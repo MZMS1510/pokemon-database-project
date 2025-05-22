@@ -1,4 +1,4 @@
-import PokemonSpecies from "../models/pokemonSpeciesModel";
+import PokemonSpecies from "../models/pokemonSpeciesModel.js";
 
 const getAllPokemonSpecies = async () => {
   try {

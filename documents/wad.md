@@ -40,7 +40,7 @@ _Posicione aqui a lista de User Stories levantadas para o projeto. Siga o templa
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
-### 3.1. Modelagem do banco de dados (Semana 3)
+### 3.1. Modelagem do banco de dados
 
 ![Diagrama relacional do banco de dados](../assets/database-diagram.jpeg)
 
@@ -52,44 +52,76 @@ Este diagrama de Entidade-Relacionamento (DER) descreve um banco de dados projet
 
 A estrutura do banco de dados é composta pelas seguintes tabelas principais:
 
-* **`trainer` (Treinador):** Armazena informações sobre os treinadores, incluindo um ID único (`pk`, tipo UUID), nome (`name`, VARCHAR), o número de insígnias (`badges`, INT) e a quantidade de dinheiro (`money`, INT) que possuem.
-* **`team` (Equipe):** Representa a equipe ativa de Pokémon de um treinador. Contém um ID único (`pk`, UUID), o ID do treinador ao qual a equipe pertence (`trainer_id`, UUID), e os IDs dos seis Pokémon que compõem a equipe (`poke1` a `poke6`, todos UUID). Há uma relação de um-para-um com `trainer` (uma equipe por treinador) e relações de muitos-para-um com a tabela `pokemon` (cada slot de equipe aponta para um Pokémon individual).
-* **`box` (Caixa):** Permite armazenar Pokémon que não estão na equipe ativa de um treinador. É uma tabela de ligação que conecta um `trainer_id` (UUID) a um `poke_id` (UUID), indicando quais Pokémon estão guardados por qual treinador.
-* **`pokemon` (Pokémon Individual):** Contém os dados de um Pokémon específico possuído por um treinador. Inclui um ID único (`pk`, UUID), o ID da espécie (`species`, UUID), um apelido (`nickname`, VARCHAR), nível (`level`, INT), pontos de vida atuais e máximos (`hp`, `max_hp`, INT), estatísticas de ataque, defesa, ataque especial, defesa especial e velocidade (`atk`, `def`, `spatk`, `spdef`, `speed`, todos INT), experiência (`exp`, INT) e um indicador booleano se é shiny (`shiny`, BOOL). Esta tabela se relaciona com `pokemon_species`.
-* **`pokemon_species` (Espécie de Pokémon):** Descreve as características base de uma espécie de Pokémon. Possui um ID único (`pk`, UUID), nome da espécie (`name`, VARCHAR), e IDs para seus tipos (`type1`, `type2`, ambos UUID). Também armazena as estatísticas base (`base_hp`, `base_atk`, `base_def`, `base_spatk`, `base_spdef`, `base_speed`, todos INT) e o ID da próxima estágio evolutivo (`next_stage_id`, UUID), permitindo encadear evoluções.
-* **`pokemon_types` (Tipos de Pokémon):** Uma tabela de referência para os tipos de Pokémon (ex: Água, Fogo, Grama). Contém um ID único (`pk`, UUID) e o nome do tipo (`name`, VARCHAR).
-* **`item` (Item Individual):** Representa um item específico que um treinador possui. Inclui um ID único (`pk`, UUID), o ID do tipo de item (`type`, UUID) e o ID do treinador que possui o item (`trainer_id`, UUID).
-* **`item_type` (Tipo de Item):** Define as características de um tipo de item. Contém um ID único (`pk`, UUID), o ID da categoria do item (`category_id`, UUID), uma descrição (`description`, VARCHAR) e o efeito do item (`effect`, VARCHAR).
-* **`item_category` (Categoria de Item):** Classifica os tipos de itens em categorias mais amplas (ex: Pokébolas, Poções, Itens Chave). Possui um ID único (`pk`, UUID), nome da categoria (`name`, VARCHAR) e uma descrição mais longa (`description`, TEXT).
+- **`trainer` (Treinador):** Armazena informações sobre os treinadores, incluindo um ID único (`pk`, tipo UUID), nome (`name`, VARCHAR), o número de insígnias (`badges`, INT) e a quantidade de dinheiro (`money`, INT) que possuem.
+- **`team` (Equipe):** Representa a equipe ativa de Pokémon de um treinador. Contém um ID único (`pk`, UUID), o ID do treinador ao qual a equipe pertence (`trainer_id`, UUID), e os IDs dos seis Pokémon que compõem a equipe (`poke1` a `poke6`, todos UUID). Há uma relação de um-para-um com `trainer` (uma equipe por treinador) e relações de muitos-para-um com a tabela `pokemon` (cada slot de equipe aponta para um Pokémon individual).
+- **`box` (Caixa):** Permite armazenar Pokémon que não estão na equipe ativa de um treinador. É uma tabela de ligação que conecta um `trainer_id` (UUID) a um `poke_id` (UUID), indicando quais Pokémon estão guardados por qual treinador.
+- **`pokemon` (Pokémon Individual):** Contém os dados de um Pokémon específico possuído por um treinador. Inclui um ID único (`pk`, UUID), o ID da espécie (`species`, UUID), um apelido (`nickname`, VARCHAR), nível (`level`, INT), pontos de vida atuais e máximos (`hp`, `max_hp`, INT), estatísticas de ataque, defesa, ataque especial, defesa especial e velocidade (`atk`, `def`, `spatk`, `spdef`, `speed`, todos INT), experiência (`exp`, INT) e um indicador booleano se é shiny (`shiny`, BOOL). Esta tabela se relaciona com `pokemon_species`.
+- **`pokemon_species` (Espécie de Pokémon):** Descreve as características base de uma espécie de Pokémon. Possui um ID único (`pk`, UUID), nome da espécie (`name`, VARCHAR), e IDs para seus tipos (`type1`, `type2`, ambos UUID). Também armazena as estatísticas base (`base_hp`, `base_atk`, `base_def`, `base_spatk`, `base_spdef`, `base_speed`, todos INT) e o ID da próxima estágio evolutivo (`next_stage_id`, UUID), permitindo encadear evoluções.
+- **`pokemon_types` (Tipos de Pokémon):** Uma tabela de referência para os tipos de Pokémon (ex: Água, Fogo, Grama). Contém um ID único (`pk`, UUID) e o nome do tipo (`name`, VARCHAR).
+- **`item` (Item Individual):** Representa um item específico que um treinador possui. Inclui um ID único (`pk`, UUID), o ID do tipo de item (`type`, UUID) e o ID do treinador que possui o item (`trainer_id`, UUID).
+- **`item_type` (Tipo de Item):** Define as características de um tipo de item. Contém um ID único (`pk`, UUID), o ID da categoria do item (`category_id`, UUID), uma descrição (`description`, VARCHAR) e o efeito do item (`effect`, VARCHAR).
+- **`item_category` (Categoria de Item):** Classifica os tipos de itens em categorias mais amplas (ex: Pokébolas, Poções, Itens Chave). Possui um ID único (`pk`, UUID), nome da categoria (`name`, VARCHAR) e uma descrição mais longa (`description`, TEXT).
 
 **Relacionamentos Chave:**
 
-* Um **`trainer`** pode possuir muitos **`item`s**, e um **`item`** pertence a um **`trainer`**.
-* Um **`trainer`** possui uma única **`team`**, e uma **`team`** pertence a um **`trainer`**.
-* Um **`trainer`** pode ter muitos **`pokemon`** armazenados em **`box`**, e um **`pokemon`** na **`box`** está associado a um **`trainer`**.
-* Um **`team`** é composto por até seis **`pokemon`** individuais.
-* Um **`pokemon`** (individual) é de uma **`pokemon_species`**, e uma **`pokemon_species`** pode ter muitos **`pokemon`** (indivíduo).
-* Uma **`pokemon_species`** pode ter até dois **`pokemon_types`**, e um **`pokemon_type`** pode ser associado a muitas **`pokemon_species`**.
-* Um **`item`** (individual) é de um **`item_type`**, e um **`item_type`** pode gerar muitos **`item`s** (indivíduos).
-* Um **`item_type`** pertence a uma **`item_category`**, e uma **`item_category`** pode ter muitos **`item_type`s**.
+- Um **`trainer`** pode possuir muitos **`item`s**, e um **`item`** pertence a um **`trainer`**.
+- Um **`trainer`** possui uma única **`team`**, e uma **`team`** pertence a um **`trainer`**.
+- Um **`trainer`** pode ter muitos **`pokemon`** armazenados em **`box`**, e um **`pokemon`** na **`box`** está associado a um **`trainer`**.
+- Um **`team`** é composto por até seis **`pokemon`** individuais.
+- Um **`pokemon`** (individual) é de uma **`pokemon_species`**, e uma **`pokemon_species`** pode ter muitos **`pokemon`** (indivíduo).
+- Uma **`pokemon_species`** pode ter até dois **`pokemon_types`**, e um **`pokemon_type`** pode ser associado a muitas **`pokemon_species`**.
+- Um **`item`** (individual) é de um **`item_type`**, e um **`item_type`** pode gerar muitos **`item`s** (indivíduos).
+- Um **`item_type`** pertence a uma **`item_category`**, e uma **`item_category`** pode ter muitos **`item_type`s**.
 
 Este design de banco de dados é flexível e extensível, permitindo adicionar novas funcionalidades como trocas, batalhas, e outras mecânicas de jogo, mantendo a integridade e organização dos dados.
 
-### 3.1.1 BD e Models (Semana 5)
+### 3.1.1 BD e Models
 
-_Descreva aqui os Models implementados no sistema web_
+garantindo a integração entre a camada de persistência e a lógica de negócio. Cada modelo Sequelize representa uma tabela do banco de dados e está localizado na pasta `models/`. Abaixo, segue a relação entre os arquivos JavaScript responsáveis pela definição dos modelos e as respectivas tabelas do banco de dados:
+
+- [**`models/Trainer.js`**](../models/trainerModel.js): Define o modelo `Trainer`, correspondente à tabela `trainer`.
+- [**`models/Team.js`**](../models/teamModel.js): Define o modelo `Team`, correspondente à tabela `team`.
+- [**`models/Box.js`**](../models/boxModel.js): Define o modelo `Box`, correspondente à tabela `box`.
+- [**`models/Pokemon.src/models/Pokemon.js`**](../models/pokemonModel.js): Define o modelo `Pokemon`, correspondente à tabela `pokemon`.
+- [**`models/PokemonSpecies.js`**](../models/pokemonSpeciesModel.js): Define o modelo `PokemonSpecies`, correspondente à tabela `pokemon_species`.
+- [**`models/PokemonType.js`**](../models/pokemonTypeModel.js): Define o modelo `PokemonType`, correspondente à tabela `pokemon_types`.
+- [**`models/Item.js`**](../models/itemModel.js): Define o modelo `Item`, correspondente à tabela `item`.
+- [**`models/ItemType.js`**](../models/itemTypeModel.js): Define o modelo `ItemType`, correspondente à tabela `item_type`.
+- [**`models/ItemCategory.js`**](../models/itemCategoryModel.js): Define o modelo `ItemCategory`, correspondente à tabela `item_category`.
+
+Esses arquivos são importados e utilizados nos controllers localizados em `controllers/`, que implementam a lógica de acesso e manipulação dos dados via API. Dessa forma, a estrutura do projeto mantém uma separação clara entre definição dos dados (models), regras de negócio (controllers) e rotas de acesso (routes), promovendo organização, reutilização e facilidade de manutenção.
 
 ### 3.2. Arquitetura (Semana 5)
 
-_Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário._
+![Diagrama de arquitetura da aplicação](../assets/architecture-diagram.jpg)
 
-**Instruções para criação do diagrama de arquitetura**
+O diagrama acima ilustra a arquitetura da aplicação, que segue o padrão MVC (Model-View-Controller) e está dividida em duas camadas principais: **Front-end** e **Back-end**.
 
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
+#### **Front-end**
 
-_Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View._
+- **HTML, CSS e JS**: São as tecnologias base para a construção da interface do usuário.
+- **React**: Biblioteca JavaScript utilizada para criar interfaces de usuário dinâmicas e reativas.
+- **Vite**: Ferramenta de build que otimiza o desenvolvimento e a entrega do front-end.
+- **Axios**: Biblioteca para realizar requisições HTTP, conectando o front-end ao back-end.
+
+#### **Back-end**
+
+- **Node.js**: Ambiente de execução para JavaScript no lado do servidor.
+- **Express.js**: Framework para criar a API RESTful que gerencia as requisições e respostas.
+- **Sequelize**: ORM (Object-Relational Mapping) que facilita a interação com o banco de dados PostgreSQL.
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenar as informações da aplicação.
+- **Supabase**: Ferramenta que complementa o PostgreSQL, oferecendo funcionalidades adicionais como autenticação e armazenamento.
+
+#### **Fluxo de Dados**
+
+1. O usuário interage com a interface no navegador (HTML, CSS, JS).
+2. As ações do usuário são processadas pelo React, que utiliza o Axios para enviar requisições HTTP para a API.
+3. A API, construída com Express.js, recebe as requisições e as encaminha para os controllers.
+4. Os controllers processam as requisições, interagindo com os models definidos no Sequelize.
+5. O Sequelize traduz as operações para comandos SQL, que são executados no banco de dados PostgreSQL.
+6. Os dados retornam pelo mesmo caminho, sendo enviados do banco para os models, dos models para os controllers, e dos controllers para o front-end, onde são exibidos ao usuário.
+
+Essa arquitetura modular promove a separação de responsabilidades, facilitando a manutenção, escalabilidade e testes da aplicação.
 
 ### 3.3. Wireframes (Semana 03 - opcional)
 

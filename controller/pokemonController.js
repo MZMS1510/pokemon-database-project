@@ -1,7 +1,11 @@
 import Pokemon from "../models/pokemonModel.js";
 
 const getAllPokemons = async () => {
-  console.log(await Pokemon.findAll());
+  try {
+    return await Pokemon.findAll();
+  } catch (error) {
+    throw new Error(`Error fetching Pokémon: ${error.message}`);
+  }
 };
 
 const getPokemonById = async (id) => {

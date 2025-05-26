@@ -6,6 +6,8 @@ export const app = express();
 
 testConnection();
 
+app.use(express.json());
+
 app.use("/", indexRouter);
 
 app.listen(3000, () => {

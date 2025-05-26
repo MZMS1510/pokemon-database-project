@@ -1,10 +1,11 @@
 import express from "express";
-import { testConnection } from "./config/database.js";
+import { initializeDatabase } from "./config/init.js";
 import indexRouter from "./routes/indexRouter.js";
 
 export const app = express();
 
-testConnection();
+// Inicializar banco de dados e associações
+initializeDatabase();
 
 app.use(express.json());
 

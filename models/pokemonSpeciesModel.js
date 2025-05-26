@@ -78,25 +78,4 @@ const PokemonSpecies = sequelize.define(
   }
 );
 
-// Define associations
-PokemonSpecies.associate = (models) => {
-  // PokemonSpecies has a primary type (required)
-  PokemonSpecies.belongsTo(models.PokemonType, {
-    foreignKey: "type1_id",
-    as: "primaryType",
-  });
-
-  // PokemonSpecies has a secondary type (optional)
-  PokemonSpecies.belongsTo(models.PokemonType, {
-    foreignKey: "type2_id",
-    as: "secondaryType",
-  });
-
-  // PokemonSpecies has many Pokemon instances
-  PokemonSpecies.hasMany(models.Pokemon, {
-    foreignKey: "species_id",
-    as: "pokemon",
-  });
-};
-
 export default PokemonSpecies;

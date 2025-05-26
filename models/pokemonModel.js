@@ -91,25 +91,4 @@ const Pokemon = sequelize.define(
   }
 );
 
-Pokemon.associate = (models) => {
-  Pokemon.belongsTo(models.PokemonSpecies, {
-    foreignKey: "species_id",
-    as: "species",
-  });
-
-  // Pokemon can be in a team
-  Pokemon.belongsToMany(models.Trainer, {
-    through: "team",
-    foreignKey: "pokemon_id",
-    as: "trainersTeam",
-  });
-
-  // Pokemon can be stored in a box
-  Pokemon.belongsToMany(models.Trainer, {
-    through: "box",
-    foreignKey: "pokemon_id",
-    as: "trainersBox",
-  });
-};
-
 export default Pokemon;

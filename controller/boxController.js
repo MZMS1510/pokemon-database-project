@@ -2,7 +2,28 @@ import Box from "../models/boxModel.js";
 
 const getAllBoxes = async () => {
   try {
-    return await Box.findAll();
+    return await Box.findAll({
+      include: [
+        {
+          association: "boxOwner",
+          attributes: ["name", "badges"],
+        },
+        {
+          association: "pokemon",
+          attributes: ["nickname", "level"],
+          include: [
+            {
+              association: "pokemonSpecies",
+              attributes: ["name"],
+              include: [
+                { association: "primaryType", attributes: ["name"] },
+                { association: "secondaryType", attributes: ["name"] },
+              ],
+            },
+          ],
+        },
+      ],
+    });
   } catch (error) {
     throw new Error(`Error fetching boxes: ${error.message}`);
   }

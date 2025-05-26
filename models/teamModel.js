@@ -13,6 +13,7 @@ const Team = sequelize.define(
     trainerId: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "trainer_id",
       references: {
         model: "trainer",
         key: "id",
@@ -21,6 +22,7 @@ const Team = sequelize.define(
     pokemon1Id: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "pokemon1_id",
       references: {
         model: "pokemon",
         key: "id",
@@ -29,6 +31,7 @@ const Team = sequelize.define(
     pokemon2Id: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "pokemon2_id",
       references: {
         model: "pokemon",
         key: "id",
@@ -37,6 +40,7 @@ const Team = sequelize.define(
     pokemon3Id: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "pokemon3_id",
       references: {
         model: "pokemon",
         key: "id",
@@ -45,6 +49,7 @@ const Team = sequelize.define(
     pokemon4Id: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "pokemon4_id",
       references: {
         model: "pokemon",
         key: "id",
@@ -53,6 +58,7 @@ const Team = sequelize.define(
     pokemon5Id: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "pokemon5_id",
       references: {
         model: "pokemon",
         key: "id",
@@ -61,6 +67,7 @@ const Team = sequelize.define(
     pokemon6Id: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: "pokemon6_id",
       references: {
         model: "pokemon",
         key: "id",

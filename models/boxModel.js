@@ -8,11 +8,13 @@ const Box = sequelize.define(
       type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
+      field: "trainer_id",
     },
     pokemonId: {
       type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
+      field: "pokemon_id",
     },
   },
   {

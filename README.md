@@ -2,6 +2,18 @@
 
 Este projeto é uma réplica do sistema de gerenciamento do jogo pokémon, utilizando PostgreSQL e Express.js
 
+## Arquitetura
+
+O projeto utiliza uma arquitetura MVC (Model-View-Controller) com Sequelize ORM para gerenciar as associações entre as entidades do banco de dados. As associações foram otimizadas para evitar conflitos de nomenclatura e permitir queries eficientes.
+
+### Sistema de Associações
+
+- **Centralizadas**: Todas as associações estão definidas em `models/associations.js`
+- **Aliases únicos**: Cada associação possui um alias único para evitar conflitos
+- **Carregamento lazy**: Use `include` para carregar dados relacionados conforme necessário
+
+Para mais detalhes sobre como usar as associações, consulte o arquivo `documents/others/ASSOCIATIONS_GUIDE.md`.
+
 ## Requisitos
 
 - Node.js (versão 22.13.X)

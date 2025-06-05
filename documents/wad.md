@@ -137,7 +137,144 @@ _Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelid
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-_Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema._
+A API REST do Pokemon Database oferece endpoints completos para gerenciar todas as entidades do sistema. Todos os endpoints seguem os padrões REST e retornam dados em formato JSON.
+
+**Base URL:** `http://localhost:3000`
+
+#### 3.6.1. Trainers (Treinadores)
+
+| Método | Endpoint        | Descrição                  | Parâmetros                           | Response                  |
+| ------ | --------------- | -------------------------- | ------------------------------------ | ------------------------- |
+| GET    | `/trainers`     | Lista todos os treinadores | -                                    | Array de objetos Trainer  |
+| GET    | `/trainers/:id` | Busca treinador por ID     | `id` (UUID)                          | Objeto Trainer            |
+| POST   | `/trainers`     | Cria novo treinador        | Body: `{name, money?, badges?}`      | Objeto Trainer criado     |
+| PUT    | `/trainers/:id` | Atualiza treinador         | `id` (UUID), Body: dados a atualizar | Objeto Trainer atualizado |
+| DELETE | `/trainers/:id` | Remove treinador           | `id` (UUID)                          | Mensagem de confirmação   |
+
+**Exemplo de resposta Trainer:**
+
+```json
+{
+  "id": "uuid-v4",
+  "name": "Ash Ketchum",
+  "money": 5000,
+  "badges": 8,
+  "createdAt": "2025-05-25T10:00:00.000Z",
+  "updatedAt": "2025-05-25T10:00:00.000Z"
+}
+```
+
+#### 3.6.2. Pokémons
+
+| Método | Endpoint        | Descrição               | Parâmetros                                                                                | Response                  |
+| ------ | --------------- | ----------------------- | ----------------------------------------------------------------------------------------- | ------------------------- |
+| GET    | `/pokemons`     | Lista todos os pokémons | -                                                                                         | Array de objetos Pokemon  |
+| GET    | `/pokemons/:id` | Busca pokémon por ID    | `id` (UUID)                                                                               | Objeto Pokemon            |
+| POST   | `/pokemons`     | Cria novo pokémon       | Body: `{species_id, level, nickname?, hp, atk, def, sp_atk, sp_def, speed, exp?, shiny?}` | Objeto Pokemon criado     |
+| PUT    | `/pokemons/:id` | Atualiza pokémon        | `id` (UUID), Body: dados a atualizar                                                      | Objeto Pokemon atualizado |
+| DELETE | `/pokemons/:id` | Remove pokémon          | `id` (UUID)                                                                               | Mensagem de confirmação   |
+
+#### 3.6.3. Espécies de Pokémon
+
+| Método | Endpoint               | Descrição               | Parâmetros                                                                                             | Response                         |
+| ------ | ---------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| GET    | `/pokemon-species`     | Lista todas as espécies | -                                                                                                      | Array de objetos PokemonSpecies  |
+| GET    | `/pokemon-species/:id` | Busca espécie por ID    | `id` (UUID)                                                                                            | Objeto PokemonSpecies            |
+| POST   | `/pokemon-species`     | Cria nova espécie       | Body: `{name, type1_id, type2_id?, base_hp, base_atk, base_def, base_sp_atk, base_sp_def, base_speed}` | Objeto PokemonSpecies criado     |
+| PUT    | `/pokemon-species/:id` | Atualiza espécie        | `id` (UUID), Body: dados a atualizar                                                                   | Objeto PokemonSpecies atualizado |
+| DELETE | `/pokemon-species/:id` | Remove espécie          | `id` (UUID)                                                                                            | Mensagem de confirmação          |
+
+#### 3.6.4. Tipos de Pokémon
+
+| Método | Endpoint     | Descrição            | Parâmetros                           | Response                |
+| ------ | ------------ | -------------------- | ------------------------------------ | ----------------------- |
+| GET    | `/types`     | Lista todos os tipos | -                                    | Array de objetos Type   |
+| GET    | `/types/:id` | Busca tipo por ID    | `id` (UUID)                          | Objeto Type             |
+| POST   | `/types`     | Cria novo tipo       | Body: `{name}`                       | Objeto Type criado      |
+| PUT    | `/types/:id` | Atualiza tipo        | `id` (UUID), Body: dados a atualizar | Objeto Type atualizado  |
+| DELETE | `/types/:id` | Remove tipo          | `id` (UUID)                          | Mensagem de confirmação |
+
+#### 3.6.5. Equipes (Teams)
+
+| Método | Endpoint     | Descrição              | Parâmetros                                                     | Response                |
+| ------ | ------------ | ---------------------- | -------------------------------------------------------------- | ----------------------- |
+| GET    | `/teams`     | Lista todas as equipes | -                                                              | Array de objetos Team   |
+| GET    | `/teams/:id` | Busca equipe por ID    | `id` (UUID)                                                    | Objeto Team             |
+| POST   | `/teams`     | Cria nova equipe       | Body: `{trainerId, pokemon1Id, pokemon2Id?, ..., pokemon6Id?}` | Objeto Team criado      |
+| PUT    | `/teams/:id` | Atualiza equipe        | `id` (UUID), Body: dados a atualizar                           | Objeto Team atualizado  |
+| DELETE | `/teams/:id` | Remove equipe          | `id` (UUID)                                                    | Mensagem de confirmação |
+
+#### 3.6.6. Caixas de Armazenamento (Boxes)
+
+| Método | Endpoint                       | Descrição                         | Parâmetros                                  | Response                |
+| ------ | ------------------------------ | --------------------------------- | ------------------------------------------- | ----------------------- |
+| GET    | `/boxes`                       | Lista todas as caixas             | -                                           | Array de objetos Box    |
+| GET    | `/boxes/:trainerId/:pokemonId` | Busca entrada específica na caixa | `trainerId` (UUID), `pokemonId` (UUID)      | Objeto Box              |
+| POST   | `/boxes`                       | Adiciona pokémon à caixa          | Body: `{trainerId, pokemonId}`              | Objeto Box criado       |
+| PUT    | `/boxes/:trainerId/:pokemonId` | Atualiza entrada na caixa         | IDs nos parâmetros, Body: dados a atualizar | Objeto Box atualizado   |
+| DELETE | `/boxes/:trainerId/:pokemonId` | Remove pokémon da caixa           | `trainerId` (UUID), `pokemonId` (UUID)      | Mensagem de confirmação |
+
+#### 3.6.7. Itens
+
+| Método | Endpoint     | Descrição            | Parâmetros                           | Response                |
+| ------ | ------------ | -------------------- | ------------------------------------ | ----------------------- |
+| GET    | `/items`     | Lista todos os itens | -                                    | Array de objetos Item   |
+| GET    | `/items/:id` | Busca item por ID    | `id` (UUID)                          | Objeto Item             |
+| POST   | `/items`     | Cria novo item       | Body: `{ownerId, typeId}`            | Objeto Item criado      |
+| PUT    | `/items/:id` | Atualiza item        | `id` (UUID), Body: dados a atualizar | Objeto Item atualizado  |
+| DELETE | `/items/:id` | Remove item          | `id` (UUID)                          | Mensagem de confirmação |
+
+#### 3.6.8. Categorias de Itens
+
+| Método | Endpoint               | Descrição                 | Parâmetros                           | Response                       |
+| ------ | ---------------------- | ------------------------- | ------------------------------------ | ------------------------------ |
+| GET    | `/item-categories`     | Lista todas as categorias | -                                    | Array de objetos ItemCategory  |
+| GET    | `/item-categories/:id` | Busca categoria por ID    | `id` (UUID)                          | Objeto ItemCategory            |
+| POST   | `/item-categories`     | Cria nova categoria       | Body: `{name, description?}`         | Objeto ItemCategory criado     |
+| PUT    | `/item-categories/:id` | Atualiza categoria        | `id` (UUID), Body: dados a atualizar | Objeto ItemCategory atualizado |
+| DELETE | `/item-categories/:id` | Remove categoria          | `id` (UUID)                          | Mensagem de confirmação        |
+
+#### 3.6.9. Tipos de Itens
+
+| Método | Endpoint          | Descrição                     | Parâmetros                                      | Response                   |
+| ------ | ----------------- | ----------------------------- | ----------------------------------------------- | -------------------------- |
+| GET    | `/item-types`     | Lista todos os tipos de itens | -                                               | Array de objetos ItemType  |
+| GET    | `/item-types/:id` | Busca tipo de item por ID     | `id` (UUID)                                     | Objeto ItemType            |
+| POST   | `/item-types`     | Cria novo tipo de item        | Body: `{name, description?, effect?, category}` | Objeto ItemType criado     |
+| PUT    | `/item-types/:id` | Atualiza tipo de item         | `id` (UUID), Body: dados a atualizar            | Objeto ItemType atualizado |
+| DELETE | `/item-types/:id` | Remove tipo de item           | `id` (UUID)                                     | Mensagem de confirmação    |
+
+#### 3.6.10. Códigos de Status HTTP
+
+A API utiliza os seguintes códigos de status HTTP:
+
+- **200 OK**: Operação realizada com sucesso (GET, PUT)
+- **201 Created**: Recurso criado com sucesso (POST)
+- **404 Not Found**: Recurso não encontrado
+- **500 Internal Server Error**: Erro interno do servidor
+
+#### 3.6.11. Tratamento de Erros
+
+Todos os endpoints retornam erros no formato JSON:
+
+```json
+{
+  "error": "Mensagem de erro descritiva"
+}
+```
+
+#### 3.6.12. Relacionamentos
+
+A API suporta associações entre entidades através do sistema Sequelize implementado. As relações incluem:
+
+- **Trainer** possui muitos **Pokémon** (através de Team e Box)
+- **Pokémon** pertence a uma **PokemonSpecies**
+- **PokemonSpecies** possui tipos primário e secundário (**Type**)
+- **Item** pertence a um **Trainer**, **ItemCategory** e **ItemType**
+- **Team** conecta **Trainer** com até 6 **Pokémon**
+- **Box** armazena **Pokémon** de um **Trainer**
+
+Para detalhes sobre como utilizar as associações, consulte o [Guia de Associações](../documents/others/ASSOCIATIONS_GUIDE.md).
 
 ### 3.7 Interface e Navegação (Semana 07)
 

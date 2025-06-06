@@ -93,7 +93,7 @@ Esses arquivos são importados e utilizados nos controllers localizados em `cont
 
 ### 3.2. Arquitetura (Semana 5)
 
-![Diagrama de arquitetura da aplicação](../assets/architecture-diagram.jpg)
+![Diagrama de arquitetura da aplicação](../assets/architecture-diagram-2.png)
 
 O diagrama acima ilustra a arquitetura da aplicação, que segue o padrão MVC (Model-View-Controller) e está dividida em duas camadas principais: **Front-end** e **Back-end**.
 

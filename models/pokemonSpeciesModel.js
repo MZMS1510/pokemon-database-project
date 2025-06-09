@@ -71,6 +71,14 @@ const PokemonSpecies = sequelize.define(
         min: 1,
       },
     },
+    next_stage_id: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: "pokemon_species",
+        key: "id",
+      },
+    },
   },
   {
     tableName: "pokemon_species",

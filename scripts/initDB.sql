@@ -16,9 +16,11 @@ CREATE TABLE IF NOT EXISTS pokemon_species (
   base_sp_atk INT NOT NULL,
   base_sp_def INT NOT NULL,
   base_speed INT NOT NULL,
+  next_stage_id UUID,
 
   FOREIGN KEY (type1_id) REFERENCES pokemon_types(id) ON DELETE CASCADE,
-  FOREIGN KEY (type2_id) REFERENCES pokemon_types(id) ON DELETE SET NULL
+  FOREIGN KEY (type2_id) REFERENCES pokemon_types(id) ON DELETE SET NULL,
+  FOREIGN KEY (next_stage_id) REFERENCES pokemon_species(id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS pokemon (

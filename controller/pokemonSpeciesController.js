@@ -2,7 +2,12 @@ import PokemonSpecies from "../models/pokemonSpeciesModel.js";
 
 const getAllPokemonSpecies = async () => {
   try {
-    return await PokemonSpecies.findAll();
+    return await PokemonSpecies.findAll({
+      include: [
+        { association: "primaryType" },
+        { association: "secondaryType" },
+      ],
+    });
   } catch (error) {
     throw new Error(`Error fetching Pokémon species: ${error.message}`);
   }

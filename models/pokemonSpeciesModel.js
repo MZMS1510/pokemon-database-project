@@ -9,6 +9,12 @@ const PokemonSpecies = sequelize.define(
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    pokedex_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      unique: true,
+    },
     name: {
       type: DataTypes.STRING(100),
       allowNull: false,

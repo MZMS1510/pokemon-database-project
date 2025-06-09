@@ -52,6 +52,38 @@ npm run init-db
 
 Isso criará todas as tabelas do projeto no seu banco de dados PostgreSQL com UUID como chave primária.
 
+## Configuração do Frontend
+
+O projeto inclui uma interface web React que consome a API do backend.
+
+1. **Navegar para o diretório do frontend:**
+
+```bash
+cd views
+```
+
+2. **Instalar as dependências do frontend:**
+
+```bash
+npm install
+```
+
+3. **Executar o frontend em modo de desenvolvimento:**
+
+```bash
+npm run dev
+```
+
+O frontend será iniciado em `http://localhost:5173` por padrão.
+
+4. **Voltar para o diretório raiz:**
+
+```bash
+cd ..
+```
+
+**Nota**: Certifique-se de que o backend esteja rodando antes de iniciar o frontend para que a aplicação funcione corretamente.
+
 ## Funcionalidades
 
 - **Consulta de Pokémons**: É possível buscar pokémons através de seu nome, tipo, status, etc.
@@ -61,9 +93,18 @@ Isso criará todas as tabelas do projeto no seu banco de dados PostgreSQL com UU
 
 ## Scripts Disponíveis
 
+### Backend
+
 - `npm start`: Inicia o servidor Node.js.
 - `npm run dev`: Inicia o servidor com reinicialização automática após alterações no código.
 - `npm run init-db`: Inicia as tabelas necessárias para o banco de dados.
+
+### Frontend (no diretório `views/`)
+
+- `npm run dev`: Inicia o servidor de desenvolvimento do frontend com Vite.
+- `npm run build`: Gera a build de produção do frontend.
+- `npm run preview`: Visualiza a build de produção localmente.
+- `npm run lint`: Executa o linter ESLint no código do frontend.
 
 ## Estrutura de Diretórios
 
@@ -75,6 +116,7 @@ Isso criará todas as tabelas do projeto no seu banco de dados PostgreSQL com UU
 - **`scripts/`**: Scripts públicos a serem rodados para o setup do projeto.
 - **`seeders/`**: Arquivos de população do banco de dados para teste.
 - **`services/`**: Conexão entre os modelos do banco de dados e os controladores da aplicação.
+- **`views/`**: Interface web React (frontend) que consome a API do backend.
 
 ## Contribuição
 

@@ -21,7 +21,7 @@ router.use("/boxes", boxRoutes);
 router.use("/item-categories", itemCategoryRoutes);
 router.use("/items", itemRoutes);
 router.use("/item-types", itemTypeRoutes);
-router.use("/pokemons", pokemonRoutes);
+router.use("/pokemon", pokemonRoutes);
 router.use("/pokemon-species", pokemonSpeciesRoutes);
 router.use("/teams", teamRoutes);
 router.use("/trainers", trainerRoutes);

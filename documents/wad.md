@@ -276,9 +276,172 @@ A API suporta associações entre entidades através do sistema Sequelize implem
 
 Para detalhes sobre como utilizar as associações, consulte o [Guia de Associações](../documents/others/ASSOCIATIONS_GUIDE.md).
 
-### 3.7 Interface e Navegação (Semana 07)
+### 3.7 Interface e Navegação
 
-_Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+A aplicação web PokéBase apresenta uma interface moderna e intuitiva, desenvolvida com React e estilizada com Tailwind CSS. O sistema de navegação é baseado em Single Page Application (SPA) utilizando React Router, proporcionando uma experiência fluida ao usuário.
+
+#### 3.7.1 Estrutura de Navegação
+
+A navegação da aplicação é centralizada através de um cabeçalho fixo que contém links para todas as seções principais. O componente `Header` oferece acesso direto às seguintes páginas:
+
+- **Home** - Página inicial e de boas-vindas
+- **Pokédex** - Catálogo de espécies Pokémon
+- **Trainers** - Lista de treinadores cadastrados
+- **Items** - Inventário de itens disponíveis
+- **Contact** - Formulário de contato
+
+#### 3.7.2 Páginas da Aplicação
+
+##### 3.7.2.1 Home (Página Inicial)
+
+A página inicial serve como ponto de entrada da aplicação, apresentando uma interface de boas-vindas limpa e atrativa.
+
+**Funcionalidades:**
+
+- Apresentação do nome da aplicação "PokéBase"
+- Descrição resumida dos recursos disponíveis
+- Call-to-action direcionando para a Pokédex
+- Design responsivo com elementos centralizados
+
+**Dados utilizados:** Nenhum (página estática)
+
+**Navegação:** Link direto para a página Pokédex através do botão "Learn more about the pokémons"
+
+![Página Inicial](../assets/screenshot-1.png)
+
+##### 3.7.2.2 Pokédex (Catálogo de Espécies)
+
+A Pokédex representa o catálogo completo de espécies Pokémon disponíveis no sistema, oferecendo uma visão organizada das criaturas.
+
+**Funcionalidades:**
+
+- Listagem de todas as espécies Pokémon cadastradas
+- Exibição de informações básicas (nome, tipos, ID da Pokédex)
+- Sistema de fallback com dados estáticos em caso de falha na API
+- Indicador de carregamento durante requisições
+- Tratamento de erros com feedback visual
+
+**Dados buscados:**
+
+- Endpoint: `GET /api/pokemon-species`
+- Informações obtidas: nome da espécie, tipos primário e secundário, estatísticas base
+- Relacionamentos: tipos de Pokémon associados a cada espécie
+
+**Componentes utilizados:**
+
+- `List` - Container genérico para listagens
+- `PokemonListItem` - Item individual de cada espécie
+
+![Página Pokédex](../assets/screenshot-2.png)
+
+##### 3.7.2.3 Trainers (Treinadores)
+
+A página de treinadores apresenta todos os treinadores cadastrados no sistema, exibindo suas informações principais de forma organizada.
+
+**Funcionalidades:**
+
+- Listagem completa de treinadores cadastrados
+- Exibição de estatísticas do treinador (nome, badges, dinheiro)
+- Sistema de fallback com dados de demonstração
+- Tratamento de erros e estados de carregamento
+
+**Dados buscados:**
+
+- Endpoint: `GET /api/trainers`
+- Informações obtidas: ID, nome, número de badges, quantidade de dinheiro
+- Relacionamentos futuros: equipes e Pokémon associados
+
+**Componentes utilizados:**
+
+- `List` - Container para a listagem
+- `TrainerListItem` - Representação individual de cada treinador
+
+![Página de Treinadores](../assets/screenshot-3.png)
+
+##### 3.7.2.4 Items (Itens)
+
+A seção de itens funciona como um catálogo completo dos itens disponíveis no universo Pokémon, organizados por categorias e tipos.
+
+**Funcionalidades:**
+
+- Catálogo completo de itens disponíveis
+- Informações detalhadas de cada item (nome, tipo, preço, descrição)
+- Categorização por tipos (pokébolas, cura, aprimoramento, batalha)
+- Sistema de fallback abrangente com 12 itens de exemplo
+
+**Dados buscados:**
+
+- Endpoint: `GET /api/items`
+- Informações obtidas: ID, nome, tipo, preço, descrição, efeitos
+- Relacionamentos: categorias e tipos de itens
+
+**Componentes utilizados:**
+
+- `List` - Container principal
+- `ItemListItem` - Exibição detalhada de cada item
+
+![Página de Items]()
+
+##### 3.7.2.5 Contact (Contato)
+
+A página de contato oferece um canal direto de comunicação entre usuários e desenvolvedores da aplicação.
+
+**Funcionalidades:**
+
+- Formulário de contato com campos estruturados
+- Validação de entrada para email
+- Design responsivo e acessível
+- Link direto para email de contato alternativo
+
+**Campos do formulário:**
+
+- Nome do usuário
+- Email para resposta
+- Organização (opcional)
+- Mensagem detalhada
+
+**Dados utilizados:** Nenhum (formulário front-end)
+
+![Página de Contato](../assets/screenshot-4.png)
+
+#### 3.7.3 Padrões de Interface
+
+##### 3.7.3.1 Componentes Reutilizáveis
+
+A aplicação utiliza um conjunto de componentes reutilizáveis para manter consistência visual:
+
+- **`Header`**: Navegação principal fixa
+- **`Footer`**: Rodapé com informações adicionais
+- **`List`**: Container genérico para listagens
+- **`Card`**: Exibição de informações em formato de cartão
+- **`PokemonCard`**: Cartão específico para Pokémon individuais
+
+##### 3.7.3.2 Estados da Aplicação
+
+Todas as páginas que consomem dados da API implementam três estados principais:
+
+1. **Loading**: Indicador visual durante carregamento
+2. **Error**: Mensagem de erro com dados de fallback
+3. **Success**: Exibição normal dos dados obtidos
+
+##### 3.7.3.3 Responsividade
+
+O design utiliza classes Tailwind CSS para garantir responsividade em diferentes dispositivos:
+
+- Layout flexível e centralizado
+- Componentes que se adaptam ao tamanho da tela
+- Navegação otimizada para mobile e desktop
+
+#### 3.7.4 Fluxo de Navegação
+
+O fluxo de navegação segue uma estrutura simples e intuitiva:
+
+1. **Entrada**: Usuário acessa a página Home
+2. **Exploração**: Navegação livre entre seções através do header
+3. **Descoberta**: Cada seção oferece informações específicas do domínio
+4. **Contato**: Canal direto para feedback e suporte
+
+A arquitetura de SPA permite transições suaves entre páginas, mantendo o estado da aplicação e oferecendo uma experiência de usuário fluida e moderna.
 
 ---
 

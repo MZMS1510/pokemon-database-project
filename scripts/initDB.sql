@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS pokemon_types (
 
 CREATE TABLE IF NOT EXISTS pokemon_species (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  pokedex_id SERIAL UNIQUE NOT NULL,
   name VARCHAR(100) NOT NULL,
   type1_id UUID NOT NULL,
   type2_id UUID,

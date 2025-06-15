@@ -1,4 +1,11 @@
 import Trainer from "../models/trainerModel.js";
+import Team from "../models/teamModel.js";
+import Pokemon from "../models/pokemonModel.js";
+import PokemonSpecies from "../models/pokemonSpeciesModel.js";
+import PokemonTypes from "../models/typesModel.js";
+import Item from "../models/itemModel.js";
+import ItemType from "../models/itemTypeModel.js";
+import ItemCategory from "../models/itemCategoryModel.js";
 
 const getAllTrainers = async () => {
   try {
@@ -10,7 +17,116 @@ const getAllTrainers = async () => {
 
 const getTrainerById = async (id) => {
   try {
-    const trainer = await Trainer.findByPk(id);
+    const trainer = await Trainer.findByPk(id, {
+      include: [
+        {
+          model: Team,
+          as: "team",
+          include: [
+            {
+              model: Pokemon,
+              as: "pokemon1",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+            {
+              model: Pokemon,
+              as: "pokemon2",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+            {
+              model: Pokemon,
+              as: "pokemon3",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+            {
+              model: Pokemon,
+              as: "pokemon4",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+            {
+              model: Pokemon,
+              as: "pokemon5",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+            {
+              model: Pokemon,
+              as: "pokemon6",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: Item,
+          as: "items",
+          include: [
+            {
+              model: ItemType,
+              as: "itemType",
+              include: [
+                {
+                  model: ItemCategory,
+                  as: "itemCategory",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
     if (!trainer) {
       throw new Error("Trainer not found");
     }

@@ -25,6 +25,26 @@ const getPokemonSpeciesById = async (id) => {
   }
 };
 
+const getPokemonSpeciesByPokedexId = async (id) => {
+  try {
+    const pokemonSpecies = await PokemonSpecies.findOne({
+      where: { pokedex_id: id },
+      include: [
+        { association: "primaryType" },
+        { association: "secondaryType" },
+      ],
+    });
+    if (!pokemonSpecies) {
+      throw new Error("Pokémon species not found");
+    }
+    return pokemonSpecies;
+  } catch (error) {
+    throw new Error(
+      `Error fetching Pokémon species by Pokedex ID: ${error.message}`
+    );
+  }
+};
+
 const createPokemonSpecies = async (pokemonSpeciesData) => {
   try {
     const newPokemonSpecies = await PokemonSpecies.create(pokemonSpeciesData);
@@ -63,6 +83,7 @@ const deletePokemonSpecies = async (id) => {
 export {
   getAllPokemonSpecies,
   getPokemonSpeciesById,
+  getPokemonSpeciesByPokedexId,
   createPokemonSpecies,
   updatePokemonSpecies,
   deletePokemonSpecies,

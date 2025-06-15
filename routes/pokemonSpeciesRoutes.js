@@ -2,6 +2,7 @@ import express from "express";
 import {
   getAllPokemonSpecies,
   getPokemonSpeciesById,
+  getPokemonSpeciesByPokedexId,
   createPokemonSpecies,
   updatePokemonSpecies,
   deletePokemonSpecies,
@@ -19,8 +20,21 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
+  if (isNaN(req.params.id)) {
+    return res.status(400).json({ error: "ID parameter is required" });
+  }
+
   try {
     const species = await getPokemonSpeciesById(req.params.id);
+    res.json(species);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.get("/pokedex/:id", async (req, res) => {
+  try {
+    const species = await getPokemonSpeciesByPokedexId(req.params.id);
     res.json(species);
   } catch (error) {
     res.status(500).json({ error: error.message });

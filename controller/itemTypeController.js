@@ -1,8 +1,17 @@
 import ItemType from "../models/itemTypeModel.js";
+import ItemCategory from "../models/itemCategoryModel.js";
 
 const getAllItemTypes = async () => {
   try {
-    return await ItemType.findAll();
+    return await ItemType.findAll({
+      include: [
+        {
+          model: ItemCategory,
+          as: "itemCategory",
+          attributes: ["id", "name", "description"],
+        },
+      ],
+    });
   } catch (error) {
     throw new Error(`Error fetching item types: ${error.message}`);
   }
@@ -10,7 +19,15 @@ const getAllItemTypes = async () => {
 
 const getItemTypeById = async (id) => {
   try {
-    const itemType = await ItemType.findByPk(id);
+    const itemType = await ItemType.findByPk(id, {
+      include: [
+        {
+          model: ItemCategory,
+          as: "itemCategory",
+          attributes: ["id", "name", "description"],
+        },
+      ],
+    });
     if (!itemType) {
       throw new Error("Item type not found");
     }

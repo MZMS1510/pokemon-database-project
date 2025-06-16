@@ -443,8 +443,7 @@ O sistema oferece operações visualização completas para todas as entidades:
 
 **Treinadores (Trainers)**
 
-- Cadastro, listagem, edição e exclusão de treinadores
-- Gerenciamento de badges e dinheiro
+- Listagem de treinadores
 - Interface para visualização de dados
 
 ![Screenshot da página de treinadores](../assets/trainer-final-screenshot.png)
@@ -453,7 +452,6 @@ O sistema oferece operações visualização completas para todas as entidades:
 
 - Catálogo completo de espécies Pokémon
 - Exibição de tipos, estatísticas base e informações detalhadas
-- Sistema de busca e navegação intuitiva
 
 ![Screenshot da Pokédex](../assets/pokedex-final-screenshot.png)
 
@@ -463,7 +461,6 @@ O sistema oferece operações visualização completas para todas as entidades:
 
 - Catálogo de itens organizados por categoria
 - Informações detalhadas de preço, efeito e descrição
-- Interface responsiva para diferentes tipos de dispositivos
 
 ![Screenshot da página de itens](../assets/items-final-screenshot.png)
 

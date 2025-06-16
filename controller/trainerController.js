@@ -1,5 +1,6 @@
 import Trainer from "../models/trainerModel.js";
 import Team from "../models/teamModel.js";
+import Box from "../models/boxModel.js";
 import Pokemon from "../models/pokemonModel.js";
 import PokemonSpecies from "../models/pokemonSpeciesModel.js";
 import PokemonTypes from "../models/typesModel.js";
@@ -96,6 +97,26 @@ const getTrainerById = async (id) => {
             {
               model: Pokemon,
               as: "pokemon6",
+              include: [
+                {
+                  model: PokemonSpecies,
+                  as: "pokemonSpecies",
+                  include: [
+                    { model: PokemonTypes, as: "primaryType" },
+                    { model: PokemonTypes, as: "secondaryType" },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: Box,
+          as: "boxedPokemon",
+          include: [
+            {
+              model: Pokemon,
+              as: "pokemon",
               include: [
                 {
                   model: PokemonSpecies,

@@ -24,8 +24,16 @@ Para mais detalhes sobre como usar as associações, consulte o arquivo `documen
 1. **Clonar o repositório:**
 
 ```bash
-   git clone https://github.com/MZMS1510/pokemon-database-project.git
+   git clone --recurse-submodules https://github.com/MZMS1510/pokemon-database-project.git
    cd project-pokemon-database
+```
+
+**Nota**: Use a flag `--recurse-submodules` para clonar automaticamente o submódulo do frontend localizado na pasta `views/`.
+
+Se você já clonou o repositório sem os submódulos, pode inicializá-los com:
+
+```bash
+   git submodule update --init --recursive
 ```
 
 2. **Instalar as dependências:**
@@ -54,9 +62,17 @@ Isso criará todas as tabelas do projeto no seu banco de dados PostgreSQL com UU
 
 ## Configuração do Frontend
 
-O projeto inclui uma interface web React que consome a API do backend.
+O projeto inclui uma interface web React que consome a API do backend. **Importante**: A pasta `views/` é um submódulo Git separado que contém o código do frontend.
 
-1. **Navegar para o diretório do frontend:**
+1. **Verificar se o submódulo está inicializado:**
+
+   Se você clonou o repositório com `--recurse-submodules`, o submódulo já deve estar pronto. Caso contrário, execute:
+
+```bash
+git submodule update --init --recursive
+```
+
+2. **Navegar para o diretório do frontend:**
 
 ```bash
 cd views
@@ -116,7 +132,7 @@ cd ..
 - **`scripts/`**: Scripts públicos a serem rodados para o setup do projeto.
 - **`seeders/`**: Arquivos de população do banco de dados para teste.
 - **`services/`**: Conexão entre os modelos do banco de dados e os controladores da aplicação.
-- **`views/`**: Interface web React (frontend) que consome a API do backend.
+- **`views/`**: **Submódulo Git** contendo a interface web React (frontend) que consome a API do backend. Este é um repositório separado incluído como submódulo.
 
 ## Contribuição
 

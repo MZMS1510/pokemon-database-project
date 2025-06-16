@@ -28,14 +28,6 @@ Este documento apresenta, de forma detalhada, a modelagem do banco de dados, a a
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
-### 2.1. Personas (Semana 01 - opcional)
-
-_Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário._
-
-### 2.2. User Stories (Semana 01 - opcional)
-
-_Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária._
-
 ---
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
@@ -91,7 +83,7 @@ garantindo a integração entre a camada de persistência e a lógica de negóci
 
 Esses arquivos são importados e utilizados nos controllers localizados em `controllers/`, que implementam a lógica de acesso e manipulação dos dados via API. Dessa forma, a estrutura do projeto mantém uma separação clara entre definição dos dados (models), regras de negócio (controllers) e rotas de acesso (routes), promovendo organização, reutilização e facilidade de manutenção.
 
-### 3.2. Arquitetura (Semana 5)
+### 3.2. Arquitetura
 
 ![Diagrama de arquitetura da aplicação](../assets/architecture-diagram-2.png)
 
@@ -122,18 +114,6 @@ O diagrama acima ilustra a arquitetura da aplicação, que segue o padrão MVC (
 6. Os dados retornam pelo mesmo caminho, sendo enviados do banco para os models, dos models para os controllers, e dos controllers para o front-end, onde são exibidos ao usuário.
 
 Essa arquitetura modular promove a separação de responsabilidades, facilitando a manutenção, escalabilidade e testes da aplicação.
-
-### 3.3. Wireframes (Semana 03 - opcional)
-
-_Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização)._
-
-### 3.4. Guia de estilos (Semana 05 - opcional)
-
-_Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução._
-
-### 3.5. Protótipo de alta fidelidade (Semana 05 - opcional)
-
-_Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização)._
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
@@ -449,17 +429,88 @@ A arquitetura de SPA permite transições suaves entre páginas, mantendo o esta
 
 ### 4.1 Demonstração do Sistema Web (Semana 8)
 
-_VIDEO: Insira o link do vídeo demonstrativo nesta seção_
-_Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+### 4.1.1 Vídeo de demonstração
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+![Vídeo de demonstração da aplicação](../assets/pokebase-demo.mp4)
 
-_Indique pontos fortes e pontos a melhorar de maneira geral._
-_Relacione também quaisquer outras ideias que você tenha para melhorias futuras._
+**[Link para o drive](https://drive.google.com/file/d/1ibsS1P5V8FcmPP03wubOtbDQaa9JRfBo/view?usp=sharing)**
+
+### 4.1.2 Funcionalidades Implementadas
+
+#### Sistema de Visualização Completo
+
+O sistema oferece operações visualização completas para todas as entidades:
+
+**Treinadores (Trainers)**
+
+- Cadastro, listagem, edição e exclusão de treinadores
+- Gerenciamento de badges e dinheiro
+- Interface para visualização de dados
+
+![Screenshot da página de treinadores](../assets/trainer-final-screenshot.png)
+
+**Pokédex (Espécies)**
+
+- Catálogo completo de espécies Pokémon
+- Exibição de tipos, estatísticas base e informações detalhadas
+- Sistema de busca e navegação intuitiva
+
+![Screenshot da Pokédex](../assets/pokedex-final-screenshot.png)
+
+![Screenshot dos Detalhes de Pokemon](../assets/pokemon-final-screenshot.png)
+
+**Sistema de Itens**
+
+- Catálogo de itens organizados por categoria
+- Informações detalhadas de preço, efeito e descrição
+- Interface responsiva para diferentes tipos de dispositivos
+
+![Screenshot da página de itens](../assets/items-final-screenshot.png)
+
+#### Interface de Usuário Moderna
+
+- Design responsivo adaptável a diferentes tamanhos de tela
+- Navegação intuitiva com header fixo e menu principal
+- Estados de carregamento e tratamento de erros
+- Componentes reutilizáveis para consistência visual
+
+![Screenshot da página inicial](../assets/home-final-screenshot.png)
+
+### 4.2 Conclusões e Trabalhos Futuros
+
+Neste projeto, desenvolvemos uma aplicação web completa para gerenciamento de dados do universo Pokémon, utilizando tecnologias modernas como React no frontend e Express.js com PostgreSQL no backend. O sistema oferece funcionalidades abrangentes de CRUD (Create, Read, Update, Delete) para todas as entidades principais: treinadores, Pokémon, espécies, tipos, equipes, itens e categorias.
+
+A aplicação demonstra uma arquitetura sólida baseada no padrão MVC, com separação clara entre as camadas de apresentação, lógica de negócio e persistência de dados. A interface desenvolvida em React proporciona uma experiência de usuário moderna e responsiva, enquanto a API REST garante comunicação eficiente entre frontend e backend.
+
+#### Trabalhos Futuros
+
+Como próximos passos para evolução da plataforma PokéBase, identificamos várias oportunidades de expansão que agregarão valor significativo aos usuários:
+
+**Funcionalidades Interativas de Usuário:**
+
+- Implementação de sistema de autenticação e autorização, permitindo que usuários criem contas personalizadas
+- Desenvolvimento de interface para criação e gerenciamento de equipes Pokémon personalizadas
+- Ferramenta de criação de Pokémon customizados com estatísticas balanceadas
+- Sistema de inventário pessoal para gerenciamento de itens coletados
+
+**Recursos Avançados:**
+
+- Sistema de batalhas simuladas entre equipes de diferentes treinadores
+- Calculadora de danos e efetividade entre tipos
+- Gerador de moveset otimizado para competições
+
+**Melhorias na Experiência do Usuário:**
+
+- Dashboard personalizado para cada treinador
+- Sistema de conquistas e badges virtuais
+- Recursos de busca e filtros avançados
+- Suporte para múltiplos idiomas
+
+Essas expansões transformarão a PokéBase de um sistema de consulta em uma plataforma interativa completa, onde os entusiastas Pokémon poderão não apenas visualizar informações, mas criar, personalizar e gerenciar seus próprios times e estratégias de forma colaborativa e engajante.
 
 ## <a name="c5"></a>5. Referências
 
-_Incluir as principais referências de seu projeto, para que o leitor possa consultar caso ele se interessar em aprofundar._<br>
+BULBAPEDIA. **Main Page**. Bulbapedia, the community-driven Pokémon encyclopedia. Disponível em: https://bulbapedia.bulbagarden.net/wiki/Main_Page. Acesso em: 10 jun. 2025.
 
 ---
 

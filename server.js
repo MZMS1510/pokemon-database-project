@@ -16,6 +16,10 @@ app.use(
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("API is running. Go to /api to access the endpoints.");
+});
+
 app.use("/api", indexRouter);
 
 app.listen(3000, () => {

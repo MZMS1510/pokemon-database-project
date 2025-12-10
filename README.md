@@ -46,7 +46,61 @@ npm install
 
 Renomeie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente necessárias, como as configurações do banco de dados PostgreSQL.
 
-## Configuração do Banco de Dados
+## Execução Rápida (Modo Local com SQLite)
+
+Para testar o projeto rapidamente sem precisar configurar um banco de dados PostgreSQL, você pode usar o modo SQLite local.
+
+### 1. Backend (API)
+
+No diretório raiz do projeto:
+
+1. **Instale as dependências (se ainda não fez):**
+
+   ```bash
+   npm install
+   ```
+
+2. **Popule o banco de dados local:**
+
+   Isso criará um arquivo `database.sqlite` e inserirá dados iniciais (Tipos e alguns Pokémon).
+
+   ```bash
+   npm run seed:local
+   ```
+
+3. **Inicie o servidor em modo local:**
+
+   ```bash
+   npm run start:local
+   ```
+
+   O servidor rodará em `http://localhost:3000`.
+
+### 2. Frontend (Interface)
+
+Em um novo terminal:
+
+1. **Navegue para a pasta do frontend:**
+
+   ```bash
+   cd views
+   ```
+
+2. **Instale as dependências:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o servidor de desenvolvimento:**
+
+   ```bash
+   npm run dev
+   ```
+
+   Acesse a aplicação em `http://localhost:5173`.
+
+## Configuração do Banco de Dados (PostgreSQL)
 
 1. **Criar banco de dados:**
 
@@ -78,13 +132,13 @@ git submodule update --init --recursive
 cd views
 ```
 
-2. **Instalar as dependências do frontend:**
+3. **Instalar as dependências do frontend:**
 
 ```bash
 npm install
 ```
 
-3. **Executar o frontend em modo de desenvolvimento:**
+4. **Executar o frontend em modo de desenvolvimento:**
 
 ```bash
 npm run dev
@@ -92,7 +146,7 @@ npm run dev
 
 O frontend será iniciado em `http://localhost:5173` por padrão.
 
-4. **Voltar para o diretório raiz:**
+5. **Voltar para o diretório raiz:**
 
 ```bash
 cd ..
